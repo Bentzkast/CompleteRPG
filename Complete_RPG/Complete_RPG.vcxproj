@@ -72,8 +72,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)External\SDL2_ttf-2.0.15\include;$(SolutionDir)External\SDL2_image-2.0.4\include;$(SolutionDir)External\SDL2-2.0.10\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)External\SDL2_ttf-2.0.15\lib\x86;$(SolutionDir)External\SDL2_image-2.0.4\lib\x86;$(SolutionDir)External\SDL2-2.0.10\lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(Platform)</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Users\jalfr\gamedev\Complete_RPG\Complete_RPG\External\SDL2_ttf-2.0.15\include;C:\Users\jalfr\gamedev\Complete_RPG\Complete_RPG\External\SDL2_image-2.0.4\include;C:\Users\jalfr\gamedev\Complete_RPG\Complete_RPG\External\SDL2-2.0.10\include;$(IncludePath)</IncludePath>
@@ -150,21 +150,20 @@ xcopy $(ProjectDir)External\SDL2_image-2.0.4\lib\x86\*.dll "$(OutDir)" /i /s /y 
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Src\AssetManager.cpp" />
-    <ClCompile Include="Src\Engine.cpp" />
+    <ClCompile Include="Src\RPG_Map.cpp" />
     <ClCompile Include="Src\Engine\Core.cpp" />
-    <ClCompile Include="Src\InputSystem.cpp" />
+    <ClCompile Include="Src\Engine\InputSystem.cpp" />
+    <ClCompile Include="Src\Engine\ResourceManager.cpp" />
     <ClCompile Include="Src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\AssetManager.h" />
-    <ClInclude Include="Src\Constant.h" />
-    <ClInclude Include="Src\Engine.h" />
+    <ClInclude Include="Src\RPG_Map.h" />
     <ClInclude Include="Src\Engine\Color.h" />
     <ClInclude Include="Src\Engine\Core.h" />
     <ClInclude Include="Src\Engine\Math.h" />
-    <ClInclude Include="Src\InputSystem.h" />
-    <ClInclude Include="Src\Map.h" />
+    <ClInclude Include="Src\Engine\InputSystem.h" />
+    <ClInclude Include="Src\Engine\ResourceManager.h" />
+    <ClInclude Include="Src\Engine\Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,8 @@
 #pragma once
 #include <SDL.h>
 #include <string>
-
+#include "ResourceManager.h"
+#include "InputSystem.h"
 #include "Math.h"
 #include "Color.h"
 
@@ -23,8 +24,20 @@ namespace Engine {
 		virtual bool OnGameDestroy() = 0;
 
 	public: // utility
+		const InputState& GetInputState() const;
+
+	public:
+		bool LoadSprite(const std::string& filepath, const std::string& name);
+		const Sprite* GetSprite(const std::string& name) const;
+		bool LoadBinary(const std::string& filepath, char* buffer, int size);
+		bool SaveBinary(const std::string& filepath, char* buffer, int size);
+
 	public: // draw routine here
 		void Clear(Color color);
+		// TODO
+		void DrawSprite(const Sprite* sprite, const Vec2& pos);
+		// TODO
+		void DrawPartialSprite(const Sprite* sprite, const Vec2& pos, const SDL_Rect* clip);
 	private:
 		SDL_Window* m_pWindow;
 		SDL_Renderer* m_pRenderer;
@@ -32,12 +45,12 @@ namespace Engine {
 		bool m_isRunning;
 
 	private:
-		//AssetManager* m_pAssetManager;
-		//Map* m_pMap;
-		//InputSystem* m_pInputSystem;
+		ResourceManager* m_pResourceManager;
+		InputSystem* m_pInputSystem;
 
 		// TODO
 	private:
+		//Map* m_pMap;
 		//Vector2f m_cameraPos = { 0,0 };
 		//Vector2f m_playerPos = { 0, 0 };
 		//Vector2f m_playerVel = { 0, 0 };

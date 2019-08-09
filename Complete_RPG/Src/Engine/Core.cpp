@@ -12,6 +12,7 @@ namespace Engine {
 		m_screenWidth(0),
 		m_screenHeight(0),
 		m_isFullScreen(false),
+		m_pInputSystem(nullptr),
 		m_title("Game")
 	{}
 
@@ -64,6 +65,9 @@ namespace Engine {
 
 		SDL_SetWindowTitle(m_pWindow, m_title.c_str());
 
+		m_pInputSystem = new InputSystem();
+		m_pResourceManager = new ResourceManager(m_pRenderer);
+
 		SDL_Log("Initialization Successfull");
 
 		return true;
@@ -90,7 +94,7 @@ namespace Engine {
 
 	void Game::processInput()
 	{
-		//m_pInputSystem->PrepareForUpdate();
+		m_pInputSystem->PrepareForUpdate();
 
 		SDL_Event evt;
 		while (SDL_PollEvent(&evt))
@@ -106,6 +110,33 @@ namespace Engine {
 			}
 		}
 	}
+
+	const InputState& Game::GetInputState() const
+	{
+		return m_pInputSystem->GetState();
+	}
+
+	bool Game::LoadSprite(const std::string& filepath, const std::string& name)
+	{
+		return m_pResourceManager->LoadSprite(filepath, name);
+	}
+
+	const Sprite* Game::GetSprite(const std::string& name) const
+	{
+		return m_pResourceManager->GetSprite(name);
+	}
+
+	bool Game::LoadBinary(const std::string& filepath, char* buffer, int size)
+	{
+		return m_pResourceManager->LoadBinary(filepath, buffer, size);
+	}
+	bool Game::SaveBinary(const std::string& filepath, char* buffer, int size)
+	{
+		return m_pResourceManager->SaveBinary(filepath, buffer, size);
+	}
+
+
+
 
 	void Game::updateGame()
 	{
@@ -129,6 +160,29 @@ namespace Engine {
 		SDL_RenderClear(m_pRenderer);
 	}
 
+	// TODO
+	void Game::DrawSprite(const Sprite* sprite, const Vec2& pos)
+	{
+		SDL_Rect r{ pos.x, pos.y,sprite->Width, sprite->Height };
+		SDL_RenderCopy(
+			m_pRenderer,
+			sprite->m_pTexture,
+			nullptr,
+			&r
+		);
+	}
+	// TODO
+	void Game::DrawPartialSprite(const Sprite* sprite, const Vec2& pos, const SDL_Rect* clip)
+	{
+		SDL_Rect r{ pos.x, pos.y, clip->w, clip->h };
+		SDL_RenderCopy(
+			m_pRenderer,
+			sprite->m_pTexture,
+			clip,
+			&r
+		);
+	}
+
 	void Game::renderDisplay()
 	{
 		SDL_RenderPresent(m_pRenderer);
@@ -136,6 +190,8 @@ namespace Engine {
 
 	void Game::shutdown()
 	{
+		delete m_pResourceManager;
+		delete m_pInputSystem;
 		SDL_DestroyRenderer(m_pRenderer);
 		SDL_DestroyWindow(m_pWindow);
 		TTF_Quit();
