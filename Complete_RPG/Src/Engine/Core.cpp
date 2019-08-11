@@ -126,11 +126,11 @@ namespace Engine {
 		return m_pResourceManager->GetSprite(name);
 	}
 
-	bool Game::LoadBinary(const std::string& filepath, char* buffer, int size)
+	bool Game::LoadBinary(const std::string& filepath, int* buffer, int size, int offset)
 	{
 		return m_pResourceManager->LoadBinary(filepath, buffer, size);
 	}
-	bool Game::SaveBinary(const std::string& filepath, char* buffer, int size)
+	bool Game::SaveBinary(const std::string& filepath, int* buffer, int size, int offset)
 	{
 		return m_pResourceManager->SaveBinary(filepath, buffer, size);
 	}

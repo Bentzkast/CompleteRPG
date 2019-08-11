@@ -150,20 +150,26 @@ xcopy $(ProjectDir)External\SDL2_image-2.0.4\lib\x86\*.dll "$(OutDir)" /i /s /y 
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Src\RPG_Map.cpp" />
     <ClCompile Include="Src\Engine\Core.cpp" />
     <ClCompile Include="Src\Engine\InputSystem.cpp" />
+    <ClCompile Include="Src\Engine\Map.cpp" />
     <ClCompile Include="Src\Engine\ResourceManager.cpp" />
+    <ClCompile Include="Src\GameObject.cpp" />
     <ClCompile Include="Src\Main.cpp" />
+    <ClCompile Include="Src\RPG.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\RPG_Map.h" />
+    <ClInclude Include="Src\Box.h" />
     <ClInclude Include="Src\Engine\Color.h" />
     <ClInclude Include="Src\Engine\Core.h" />
+    <ClInclude Include="Src\Engine\Map.h" />
     <ClInclude Include="Src\Engine\Math.h" />
     <ClInclude Include="Src\Engine\InputSystem.h" />
     <ClInclude Include="Src\Engine\ResourceManager.h" />
     <ClInclude Include="Src\Engine\Sprite.h" />
+    <ClInclude Include="Src\GameObject.h" />
+    <ClInclude Include="Src\Player.h" />
+    <ClInclude Include="Src\RPG.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

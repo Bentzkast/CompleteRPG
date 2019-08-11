@@ -6,15 +6,17 @@ Engine wrapper has been created to enable the creating reusable module for futur
 
 ## Engine Interface
 - Sprite drawing, really basic right now, with full and partial drawing
-- Save/Load buffer to file.
+- Save/Load Map files.
 - Read keyboard state, Hold, Pressed, Released.
+
+## In progress Feature
+- Classic Game Object system. need wrap the bounding box and world scaling.
+- Basic Tile Collision - Need proper world scaling though.
 
 ## Current Plan August
 - Level Editor
-- Tile Collision
 - Camera
 - Simple Audio
-- Classic Entity System (No component), a basic one, create, update, destroy entity. Allow characters creation.
 
 ## Final Plan
 - Item / Inventory

@@ -29,8 +29,8 @@ namespace Engine {
 	public:
 		bool LoadSprite(const std::string& filepath, const std::string& name);
 		const Sprite* GetSprite(const std::string& name) const;
-		bool LoadBinary(const std::string& filepath, char* buffer, int size);
-		bool SaveBinary(const std::string& filepath, char* buffer, int size);
+		bool LoadBinary(const std::string& filepath, int* buffer, int size, int offset = 0);
+		bool SaveBinary(const std::string& filepath, int* buffer, int size, int offset = 0);
 
 	public: // draw routine here
 		void Clear(Color color);

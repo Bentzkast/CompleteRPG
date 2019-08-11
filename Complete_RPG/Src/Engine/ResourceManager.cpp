@@ -49,7 +49,7 @@ namespace Engine
 		return true;
 	}
 
-	bool ResourceManager::LoadBinary(const std::string& filepath, char* buffer, int size)
+	bool ResourceManager::LoadBinary(const std::string& filepath, int* buffer, int size, int offset)
 	{
 		SDL_RWops* file = SDL_RWFromFile(filepath.c_str(), "r+b");
 		if (file == nullptr)
@@ -60,9 +60,9 @@ namespace Engine
 		else
 		{
 			SDL_Log("[ResourceManager] Reading File...");
-			for (int i = 0; i < size; i++)
+			for (int i = offset; i < size; i++)
 			{
-				SDL_RWread(file, &buffer[i], sizeof(char), 1);
+				SDL_RWread(file, &buffer[i], sizeof(int), 1);
 			}
 			SDL_RWclose(file);
 		}
@@ -70,7 +70,7 @@ namespace Engine
 		return true;
 	}
 
-	bool ResourceManager::SaveBinary(const std::string& filepath, char* buffer, int size)
+	bool ResourceManager::SaveBinary(const std::string& filepath, int* buffer, int size,int offset)
 	{
 		SDL_RWops* file = SDL_RWFromFile(filepath.c_str(), "r+b");
 		if (file == nullptr)
@@ -88,13 +88,12 @@ namespace Engine
 		}
 
 		SDL_Log("[ResourceManager] Writing to File...");
-		for (int i = 0; i < size; i++)
+		for (int i = offset; i < size; i++)
 		{
-			SDL_RWwrite(file, &buffer[i], sizeof(char), 1);
+			SDL_RWwrite(file, &buffer[i], sizeof(int), 1);
 		}
 		SDL_RWclose(file);
 
 		return true;
 	}
-
 }
